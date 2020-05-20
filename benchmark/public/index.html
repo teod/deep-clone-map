@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    body {
+      font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    }
+
+    .benchmark {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    .benchmark td,
+    .benchmark th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    .benchmark tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    .benchmark tr:hover {
+      background-color: #ddd;
+    }
+
+    .benchmark th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #4CAF50;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>Object</h2>
+  <table class="benchmark" id="object">
+    <tr>
+      <th width="30%">Library</th>
+      <th>Result</th>
+    </tr>
+  </table>
+
+  <h2>Array</h2>
+  <table class="benchmark" id="array">
+    <tr>
+      <th width="30%">Library</th>
+      <th>Result</th>
+    </tr>
+  </table>
+
+  <script src="bundle-arr.js"></script>
+  <script src="bundle-obj.js"></script>
+</body>
+
+</html>

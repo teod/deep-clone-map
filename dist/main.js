@@ -10,12 +10,25 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-var __spreadArrays = (this && this.__spreadArrays) || function () {
-    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
-    for (var r = Array(s), k = 0, i = 0; i < il; i++)
-        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
-            r[k] = a[j];
-    return r;
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+var __spread = (this && this.__spread) || function () {
+    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
+    return ar;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var traverse = function (obj, callback, prevKey) {
@@ -24,34 +37,43 @@ var traverse = function (obj, callback, prevKey) {
     if (!obj || typeof obj === 'number' || typeof obj === 'string') {
         return callback(obj, prevKey);
     }
-    Object.keys(obj).forEach(function (key) {
-        var previousKey = prevKey ? prevKey + "." + key : key;
-        if (Array.isArray(obj[key])) {
-            obj[key] = __spreadArrays(obj[key]);
-            obj[key].forEach(function (val, index) {
-                var previousArrKey = previousKey
-                    ? previousKey + "." + index
-                    : previousKey;
-                var mapedValue = traverse(val, callback, previousArrKey);
+    for (var key in obj) {
+        var previousKey = prevKey ? prevKey + '.' + key : key;
+        if (obj[key].constructor === Array) {
+            var len = obj[key].length;
+            var i = 0;
+            var newArr = [];
+            while (i < len) {
+                // for (let i = len - 1; i >= 0; i--) {
+                // for (let i = 0; i < len; i++) {
+                var previousArrKey = previousKey ? previousKey + '.' + i : previousKey;
+                var mapedValue = traverse(obj[key][i], callback, previousArrKey);
                 if (mapedValue) {
-                    obj[key][index] = mapedValue;
+                    newArr.push(mapedValue);
                 }
-            });
-            return;
+                else {
+                    newArr[i] = obj[key][i];
+                }
+                i++;
+            }
+            obj[key] = newArr;
         }
-        if (obj[key] && obj.hasOwnProperty(key) && typeof obj[key] === 'object') {
-            obj[key] = __assign({}, obj[key]);
-            traverse(obj[key], callback, previousKey);
-            return;
+        else if (typeof obj[key] === 'object') {
+            if (obj[key]) {
+                obj[key] = __assign({}, obj[key]);
+                traverse(obj[key], callback, previousKey);
+            }
         }
-        obj[key] = callback(obj[key], previousKey);
-    });
+        else {
+            obj[key] = callback(obj[key], previousKey);
+        }
+    }
 };
 exports.default = (function (param, callback) {
     if (!param || typeof param === 'number' || typeof param === 'string') {
         return callback(param);
     }
-    var paramToParse = Array.isArray(param) ? __spreadArrays(param) : __assign({}, param);
+    var paramToParse = param.constructor === Array ? __spread(param) : __assign({}, param);
     traverse(paramToParse, callback);
     return paramToParse;
 });
