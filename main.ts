@@ -11,33 +11,37 @@ const traverse = (
     return callback(obj, prevKey)
   }
 
-  Object.keys(obj).forEach(key => {
-    const previousKey = prevKey ? `${prevKey}.${key}` : key
+  for (const key in obj) {
+    const previousKey = prevKey ? prevKey + '.' + key : key
 
-    if (Array.isArray(obj[key])) {
-      obj[key] = [...obj[key]]
+    if (obj[key].constructor === Array) {
+      const len = obj[key].length
+      let i = 0
 
-      obj[key].forEach((val: Param, index) => {
-        const previousArrKey = previousKey
-          ? `${previousKey}.${index}`
-          : previousKey
-        const mapedValue = traverse(val, callback, previousArrKey)
+      const newArr = []
+
+      while (i < len) {
+        const previousArrKey = previousKey ? previousKey + '.' + i : previousKey
+
+        const mapedValue = traverse(obj[key][i], callback, previousArrKey)
 
         if (mapedValue) {
-          obj[key][index] = mapedValue
+          newArr.push(mapedValue)
+        } else {
+          newArr[i] = obj[key][i]
         }
-      })
-      return
+        i++
+      }
+      obj[key] = newArr
+    } else if (typeof obj[key] === 'object') {
+      if (obj[key]) {
+        obj[key] = { ...obj[key] }
+        traverse(obj[key], callback, previousKey)
+      }
+    } else {
+      obj[key] = callback(obj[key], previousKey)
     }
-
-    if (obj[key] && obj.hasOwnProperty(key) && typeof obj[key] === 'object') {
-      obj[key] = { ...obj[key] }
-      traverse(obj[key], callback, previousKey)
-      return
-    }
-
-    obj[key] = callback(obj[key], previousKey)
-  })
+  }
 }
 
 export default <T = Param>(param: T, callback?: Callback): T => {
@@ -45,7 +49,8 @@ export default <T = Param>(param: T, callback?: Callback): T => {
     return callback(param)
   }
 
-  const paramToParse = Array.isArray(param) ? [...param] : { ...param }
+  const paramToParse =
+    param.constructor === Array ? [...(param as any)] : { ...param }
 
   traverse(paramToParse as Param, callback)
 

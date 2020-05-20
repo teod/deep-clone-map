@@ -8,6 +8,7 @@
     "declaration": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
+    "downlevelIteration": true,
     "outDir": "dist"
   },
   "lib": ["es2015", "es5"],

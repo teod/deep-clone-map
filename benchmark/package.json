@@ -1,0 +1,21 @@
+{
+  "name": "deep-clone-map-benchmark",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "web": "live-server public",
+    "compile": "browserify main-arr.js -o public/bundle-arr.js && browserify main-obj.js -o public/bundle-obj.js",
+    "clean-run-obj": "rm -rf node_modules && yarn && node main-obj.js",
+    "clean-run-arr": "rm -rf node_modules && yarn && node main-arr.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "benchmark": "^2.1.4",
+    "deep-clone-map": "file:../",
+    "deep-map": "^2.0.0",
+    "es6-weak-map": "^2.0.3",
+    "map-obj": "^4.1.0"
+  }
+}
