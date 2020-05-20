@@ -1,0 +1,34 @@
+{
+  "name": "deep-clone-map",
+  "version": "1.0.0",
+  "description": "Deep clone and map complex nested objects",
+  "main": "dist/main.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teod/deep-clone-map.git"
+  },
+  "keywords": [
+    "deep",
+    "clone",
+    "map",
+    "object",
+    "array",
+    "nested"
+  ],
+  "author": "Teodor Druta",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/teod/deep-clone-map/issues"
+  },
+  "homepage": "https://github.com/teod/deep-clone-map#readme",
+  "devDependencies": {
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-typescript": "^7.9.0",
+    "@types/jest": "24.0.15",
+    "jest": "^25.3.0",
+    "typescript": "^3.8.3"
+  }
+}
