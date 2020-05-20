@@ -42,7 +42,7 @@ const traverse = (
 
 export default <T = Param>(param: T, callback?: Callback): T => {
   if (!param || typeof param === 'number' || typeof param === 'string') {
-    return param
+    return callback(param)
   }
 
   const paramToParse = Array.isArray(param) ? [...param] : { ...param }

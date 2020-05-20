@@ -49,7 +49,7 @@ var traverse = function (obj, callback, prevKey) {
 };
 exports.default = (function (param, callback) {
     if (!param || typeof param === 'number' || typeof param === 'string') {
-        return param;
+        return callback(param);
     }
     var paramToParse = Array.isArray(param) ? __spreadArrays(param) : __assign({}, param);
     traverse(paramToParse, callback);
