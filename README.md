@@ -6,6 +6,9 @@
 
 <b>Deep Clone Map</b> maps any object or array and transforms its primitive values, always returning a new instance, it can map deeply nested values in complex objects and arrays. Think of it as [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) on steriods, capable to map objects and deeply nested structure.
 
+#### Differences between other deep map libraries
+Most existing libraries do not map values in arrays, and in nested complex structures combining both objects and arrays.
+
 ## Install
 
 npm:
