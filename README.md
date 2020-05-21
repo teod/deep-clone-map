@@ -8,6 +8,7 @@
 
 #### Differences between other deep map libraries
 Most existing libraries do not map values in arrays, and in nested complex structures combining both objects and arrays.
+Typescript support is also one of the lacking features of most existing libraries.
 
 ## Install
 
