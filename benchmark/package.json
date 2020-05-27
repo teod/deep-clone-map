@@ -13,7 +13,6 @@
   "license": "ISC",
   "dependencies": {
     "benchmark": "^2.1.4",
-    "deep-clone-map": "file:../",
     "deep-map": "^2.0.0",
     "es6-weak-map": "^2.0.3",
     "map-obj": "^4.1.0"

@@ -20,7 +20,7 @@ describe('objects', () => {
   })
 
   it('should not maintain the same reference when cloning object', () => {
-    const newObj = deepCloneMap(testObj1)
+    const newObj = deepCloneMap(testObj1, val => val)
 
     expect(testObj1 === newObj).toBeFalsy()
   })
@@ -62,8 +62,7 @@ describe('objects', () => {
   })
 
   it('should deeply clone an object', () => {
-    const newObj = deepCloneMap(testObj1)
-
+    const newObj = deepCloneMap(testObj1, val => val)
     expect(newObj === testObj1).toBeFalsy()
     expect(newObj.c === testObj1.c).toBeFalsy()
     expect(newObj.c.c === testObj1.c.c).toBeFalsy()

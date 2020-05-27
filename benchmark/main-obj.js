@@ -1,9 +1,9 @@
 const Benchmark = require('benchmark')
-const deepCloneMap = require('deep-clone-map').default
+const deepCloneMap = require('../dist/main').default
 const deepMap = require('deep-map')
 const mapObj = require('map-obj')
 const testData = require('./test-data')
-const { isNode, addHtmlRow } = require('./util')
+const { addHtmlRow } = require('./util')
 
 if (global && !global.Benchmark) {
   global.Benchmark = Benchmark
@@ -19,7 +19,7 @@ suite
     deepMap(testData.obj, val => val + 1)
   })
   .add('map-obj#Object', function () {
-    mapObj(testData.obj, (key, value) => [value + 1, key])
+    mapObj(testData.obj, (key, value) => [value + 1, key], { deep: true })
   })
   .on('cycle', function (event) {
     console.log(String(event.target))
