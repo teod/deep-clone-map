@@ -1,10 +1,12 @@
-import deepCloneMap from '.'
+import deepCloneMap from './dist'
 import {
   testObj1,
   expectObj1,
-  testCustomObj1,
+  expectedCustomObj1,
   testObj2,
   expectedObj2,
+  testObjToMap,
+  expectedMapedObjectsObj1,
   testArr1,
   expectedArr1,
   testCustomArr1,
@@ -97,7 +99,13 @@ describe('objects', () => {
       }
     })
 
-    expect(newObj).toEqual(testCustomObj1)
+    expect(newObj).toEqual(expectedCustomObj1)
+  })
+
+  it('should work maping objects over primitives', () => {
+    const newObj = deepCloneMap(testObj1, val => testObjToMap)
+
+    expect(newObj).toEqual(expectedMapedObjectsObj1)
   })
 })
 

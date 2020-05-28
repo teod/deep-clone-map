@@ -15,17 +15,17 @@ const suite = new Benchmark.Suite()
 
 suite
   .add('deep-clone-map#Object', function () {
-    deepCloneMap(testData.obj, val => val + 1)
+    deepCloneMap(testData.obj, () => testData.obj)
   })
   .add('deep-map#Object', function () {
-    deepMap(testData.obj, val => val + 1)
+    deepMap(testData.obj, () => testData.obj)
   })
   .add('map-obj#Object', function () {
-    mapObj(testData.obj, (key, value) => [value + 1, key], { deep: true })
+    mapObj(testData.obj, key => [testData.obj, key], { deep: true })
   })
   .on('cycle', function (event) {
     console.log(String(event.target))
-    addHtmlRow('object', String(event.target))
+    addHtmlRow('primitive-to-object', String(event.target))
   })
   .on('complete', function () {
     console.log('Fastest is ' + this.filter('fastest').map('name'))

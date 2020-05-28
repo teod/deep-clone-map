@@ -20,10 +20,13 @@ A big advantage of <b>Deep Clone Map</b> is that it has zero dependencies.
 
 <b>Deep Clone Map</b> has a performance on par with other popular alternatives, but it offers more without using any dependencies.
 
-Some benchmarks running on MacOS Catalina and Node v12.13.0 using benchmark library:
+Some <b>benchmarks</b> running on MacOS Catalina and Node v12.13.0 using benchmark library:
 
 <table>
   <tbody>
+    <tr>
+      <td colspan="2"><i>Mapping a primitive to another primitive</i></td>
+    </tr>
     <tr>
       <td>deep-clone-map</td>
       <td>1,433,245 ops/sec ±0.53% (92 runs sampled)
@@ -37,6 +40,24 @@ Some benchmarks running on MacOS Catalina and Node v12.13.0 using benchmark libr
     <tr>
       <td>map-obj</td>
       <td>1,344,719 ops/sec ±1.25% (87 runs sampled)
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2"><i>Mapping a primitive to an object</i></td>
+    </tr>
+    <tr>
+      <td>deep-clone-map</td>
+      <td>1,280,181 ops/sec ±1.61% (86 runs sampled)
+      </td>
+    </tr>
+    <tr>
+      <td>deep-map</td>
+      <td>1,004,223 ops/sec ±0.90% (90 runs sampled)
+      </td>
+    </tr>
+    <tr>
+      <td>map-obj</td>
+      <td>871,818 ops/sec ±2.38% (87 runs sampled)
       </td>
     </tr>
   </tbody>
@@ -117,6 +138,7 @@ import deepCloneMap from 'deep-clone-map/es5'
 ```
 
 ##### Browser
+
 A browser ready bundle is provided in the node module at `dist/browser/index.js`
 
 #### Deeply clone an object:

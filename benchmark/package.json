@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "web": "live-server public",
-    "compile": "browserify main-arr.js -o public/bundle-arr.js && browserify main-obj.js -o public/bundle-obj.js",
+    "compile": "browserify main-arr.js -o public/bundle-arr.js && browserify main-obj.js -o public/bundle-obj.js && browserify main-primitive-to-obj.js -o public/bundle-primitive-to-obj.js",
     "clean-run-obj": "rm -rf node_modules && yarn && node main-obj.js",
     "clean-run-arr": "rm -rf node_modules && yarn && node main-arr.js"
   },

@@ -2,7 +2,7 @@ type Param = object | any[] | string | number | null
 
 type Callback = (arg0: any, arg1?: string) => any
 
-function deepCloneMap<T = Param>(o: T, cb: Callback = val => val) {
+function deepCloneMap<T>(o: T, cb: Callback = val => val): T {
   if (!o || typeof o !== 'object') {
     return o
   }
@@ -25,7 +25,7 @@ function deepCloneMap<T = Param>(o: T, cb: Callback = val => val) {
     }
   })(n)
 
-  return n
+  return n as T
 }
 
 export default deepCloneMap

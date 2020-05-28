@@ -32,7 +32,7 @@ export const expectObj1 = {
   },
 }
 
-export const testCustomObj1 = {
+export const expectedCustomObj1 = {
   a: 'custom-a',
   b: 'custom-b',
   c: {
@@ -44,6 +44,43 @@ export const testCustomObj1 = {
       c: {
         a: 'custom-c.c.c.a',
         b: 'custom-c.c.c.b',
+      },
+    },
+  },
+}
+
+export const testObjToMap = {
+  a: {
+    a: 1,
+    b: {
+      a: 1,
+      b: 2,
+      c: {
+        a: 1,
+        b: 2,
+      },
+    },
+  },
+  b: 1,
+  c: 2,
+  e: {
+    a: 1,
+    b: 2,
+  },
+}
+
+export const expectedMapedObjectsObj1 = {
+  a: testObjToMap,
+  b: testObjToMap,
+  c: {
+    a: testObjToMap,
+    b: testObjToMap,
+    c: {
+      a: testObjToMap,
+      b: testObjToMap,
+      c: {
+        a: testObjToMap,
+        b: testObjToMap,
       },
     },
   },
