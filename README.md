@@ -10,6 +10,7 @@
 
 Most existing libraries do not map values in arrays, and in nested complex structures combining both objects and arrays.
 Typescript support is also one of the lacking features of most existing libraries.
+A big advantage of <b>Deep Clone Map</b> is that it has zero dependencies.
 
 #### Size
 
@@ -17,7 +18,7 @@ Typescript support is also one of the lacking features of most existing librarie
 
 #### Performance
 
-<b>Deep Clone Map</b> has a performance on par with other popular alternatives, but it offers more: [TypeScript](#typescript) support and mapping complex structures with nested arrays.
+<b>Deep Clone Map</b> has a performance on par with other popular alternatives, but it offers more without using any dependencies.
 
 Some benchmarks running on MacOS Catalina and Node v12.13.0 using benchmark library:
 
