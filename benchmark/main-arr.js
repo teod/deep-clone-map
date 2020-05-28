@@ -1,5 +1,5 @@
 const Benchmark = require('benchmark')
-const deepCloneMap = require('deep-clone-map').default
+const deepCloneMap = require('../dist').default
 const testData = require('./test-data')
 const { addHtmlRow } = require('./util')
 

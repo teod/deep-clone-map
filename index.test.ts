@@ -176,3 +176,29 @@ describe('arrays', () => {
     expect(newArr).toEqual(expectedArr2)
   })
 })
+
+describe('primitives', () => {
+  it('should pass through string', () => {
+    const res = deepCloneMap('string')
+
+    expect(res).toEqual('string')
+  })
+
+  it('should pass through number', () => {
+    const res = deepCloneMap(1)
+
+    expect(res).toEqual(1)
+  })
+
+  it('should pass through null', () => {
+    const res = deepCloneMap(null)
+
+    expect(res).toEqual(null)
+  })
+
+  it('should pass through undefined', () => {
+    const res = deepCloneMap(undefined)
+
+    expect(res).toEqual(undefined)
+  })
+})

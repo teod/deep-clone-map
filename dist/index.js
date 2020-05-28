@@ -1,8 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function deepCloneMap(o, cb = val => val) {
+    if (!o || typeof o !== 'object') {
+        return o;
+    }
     // @ts-ignore
-    const nObj = o.constructor === Array ? [...o] : { ...o };
+    const n = o.constructor === Array ? [...o] : { ...o };
     (function t(obj, prevKey = '') {
         // @ts-ignore
         for (const key in obj) {
@@ -16,8 +19,8 @@ function deepCloneMap(o, cb = val => val) {
                 obj[key] = cb(obj[key], previousKey);
             }
         }
-    })(nObj);
-    return nObj;
+    })(n);
+    return n;
 }
 exports.default = deepCloneMap;
-//# sourceMappingURL=main.js.map
+//# sourceMappingURL=index.js.map

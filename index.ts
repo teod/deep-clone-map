@@ -3,8 +3,12 @@ type Param = object | any[] | string | number | null
 type Callback = (arg0: any, arg1?: string) => any
 
 function deepCloneMap<T = Param>(o: T, cb: Callback = val => val) {
+  if (!o || typeof o !== 'object') {
+    return o
+  }
+
   // @ts-ignore
-  const nObj = o.constructor === Array ? [...o] : { ...o }
+  const n = o.constructor === Array ? [...o] : { ...o }
 
   ;(function t(obj, prevKey = '') {
     // @ts-ignore
@@ -19,9 +23,9 @@ function deepCloneMap<T = Param>(o: T, cb: Callback = val => val) {
         obj[key] = cb(obj[key], previousKey)
       }
     }
-  })(nObj)
+  })(n)
 
-  return nObj
+  return n
 }
 
 export default deepCloneMap

@@ -1,5 +1,5 @@
 const Benchmark = require('benchmark')
-const deepCloneMap = require('../dist/main').default
+const deepCloneMap = require('../dist').default
 const deepMap = require('deep-map')
 const mapObj = require('map-obj')
 const testData = require('./test-data')

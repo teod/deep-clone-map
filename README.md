@@ -109,6 +109,12 @@ Returns a new deeply cloned version of the input argument value, it will maintai
 import deepCloneMap from 'deep-clone-map'
 ```
 
+##### For es5 support:
+
+```js
+import deepCloneMap from 'deep-clone-map/es5'
+```
+
 #### Deeply clone an object:
 
 ```js
