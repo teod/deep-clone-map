@@ -2,21 +2,55 @@
 
 [![npm version](https://img.shields.io/npm/v/deep-clone-map.svg?style=flat-square)](https://www.npmjs.com/package/deep-clone-map)
 
-[Install](#install) | [API](#api) |  [Usage](#usage) | [Tests](#tests) | [TypeScript](#typescript)
+[Install](#install) | [API](#api) | [Usage](#usage) | [Tests](#tests) | [TypeScript](#typescript)
 
 <b>Deep Clone Map</b> maps any object or array and transforms its primitive values, always returning a new instance, it can map deeply nested values in complex objects and arrays. Think of it as [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) on steriods, capable to map objects and deeply nested structure.
 
 #### Differences between other deep map libraries
+
 Most existing libraries do not map values in arrays, and in nested complex structures combining both objects and arrays.
 Typescript support is also one of the lacking features of most existing libraries.
+
+#### Size
+
+<b>Deep Clone Map</b> size is really tiny only <b>242 bytes</b> minified and gzipped.
+
+#### Performance
+
+<b>Deep Clone Map</b> has a performance on par with other popular alternatives, but it offers more: [TypeScript](#typescript) support and mapping complex structures with nested arrays.
+
+Some benchmarks running on MacOS Catalina and Node v12.13.0 using benchmark library:
+
+<table>
+  <tbody>
+    <tr>
+      <td>deep-clone-map</td>
+      <td>1,433,245 ops/sec ±0.53% (92 runs sampled)
+      </td>
+    </tr>
+    <tr>
+      <td>deep-map</td>
+      <td>1,131,833 ops/sec ±0.66% (88 runs sampled)
+      </td>
+    </tr>
+    <tr>
+      <td>map-obj</td>
+      <td>1,344,719 ops/sec ±1.25% (87 runs sampled)
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ## Install
 
 npm:
+
 ```sh
 npm install --save deep-clone-map
 ```
+
 yarn:
+
 ```sh
 yarn add deep-clone-map
 ```
@@ -70,57 +104,61 @@ Returns a new deeply cloned version of the input argument value, it will maintai
 ## Usage
 
 #### Import Deep Clone Map package
+
 ```js
 import deepCloneMap from 'deep-clone-map'
 ```
 
 #### Deeply clone an object:
+
 ```js
-  const obj = {
+const obj = {
+  a: 1,
+  b: 2,
+  c: {
     a: 1,
     b: 2,
-    c: {
-      a: 1,
-      b: 2,
-      c: [1, 2, 3]
-    }
-  }
+    c: [1, 2, 3],
+  },
+}
 
-  const newObj = deepCloneMap(obj)
-  // newObj !== obj && newObj.c !== obj.c && newObj.c.c !== obj.c.c
+const newObj = deepCloneMap(obj)
+// newObj !== obj && newObj.c !== obj.c && newObj.c.c !== obj.c.c
 ```
 
 #### Deeply clone an array:
-```js
-  const arr = [
-    [1, 2, 3],
-    [
-      {
-        a: 1,
-        b: 2,
-        c: [1, 2, 3]
-      }
-    ]
-  ]
 
-  const newArr = deepCloneMap(arr)
-  // newArr !== arr && newArr[1] !== arr[1] && newArr[1].c !== arr[1].c
+```js
+const arr = [
+  [1, 2, 3],
+  [
+    {
+      a: 1,
+      b: 2,
+      c: [1, 2, 3],
+    },
+  ],
+]
+
+const newArr = deepCloneMap(arr)
+// newArr !== arr && newArr[1] !== arr[1] && newArr[1].c !== arr[1].c
 ```
 
 #### Deeply map an object
+
 ```js
-  const obj = {
+const obj = {
+  a: 1,
+  b: 2,
+  c: {
     a: 1,
     b: 2,
-    c: {
-      a: 1,
-      b: 2,
-      c: [1, 2, 3]
-    }
-  }
+    c: [1, 2, 3],
+  },
+}
 
-  const newObj = deepCloneMap(obj, val => val + 1)
-  /*
+const newObj = deepCloneMap(obj, val => val + 1)
+/*
     newObj => {
       a: 2,
       b: 3,
@@ -134,30 +172,31 @@ import deepCloneMap from 'deep-clone-map'
 ```
 
 #### Deeply custom map an object based on the key
+
 ```js
-  const obj = {
+const obj = {
+  a: 1,
+  b: 2,
+  c: {
     a: 1,
     b: 2,
-    c: {
-      a: 1,
-      b: 2,
-      c: [1, 2, 3]
-    }
-  }
+    c: [1, 2, 3],
+  },
+}
 
-  const newObj = deepCloneMap(obj, (val, key) => {
-    switch (key) {
-      case 'a':
-        return 10
-      case 'c.b':
-        return 20
-      case 'c.c[1]':
-        return 20
-      default:
-        return val
-    }
-  })
-  /*
+const newObj = deepCloneMap(obj, (val, key) => {
+  switch (key) {
+    case 'a':
+      return 10
+    case 'c.b':
+      return 20
+    case 'c.c[1]':
+      return 20
+    default:
+      return val
+  }
+})
+/*
     newObj => {
       a: 10,
       b: 2,
@@ -171,25 +210,26 @@ import deepCloneMap from 'deep-clone-map'
 ```
 
 #### Deeply map a nested array
-```js
-  const arr = [
-    [1, 2, 3],
-    [
-      {
-        a: 1,
-        b: [1, 2, 3],
-        c: [
-          {
-            a: 1,
-            b: [1, 2, 3]
-          }
-        ]
-      }
-    ]
-  ]
 
-  const newArr = deepCloneMap(arr, val => val + 1)
-  /*
+```js
+const arr = [
+  [1, 2, 3],
+  [
+    {
+      a: 1,
+      b: [1, 2, 3],
+      c: [
+        {
+          a: 1,
+          b: [1, 2, 3],
+        },
+      ],
+    },
+  ],
+]
+
+const newArr = deepCloneMap(arr, val => val + 1)
+/*
     newArr => [
       [2, 3, 4],
       [
@@ -211,6 +251,7 @@ import deepCloneMap from 'deep-clone-map'
 ## Tests
 
 In order to run the provided unit tests:
+
 ```sh
   # yarn
   yarn test
@@ -224,14 +265,15 @@ In order to run the provided unit tests:
 The packages comes with typescript declarations included in the package, you only need to import the module normally.
 
 By default the types are infered from the input argument:
-```js
-  const obj = {
-    a: 1,
-    b: 2
-  }
 
-  const newObj = deepCloneMap(obj)
-  /*
+```js
+const obj = {
+  a: 1,
+  b: 2,
+}
+
+const newObj = deepCloneMap(obj)
+/*
     newObj => {
       a: number
       b: number
@@ -240,6 +282,7 @@ By default the types are infered from the input argument:
 ```
 
 In some cases you will need to provide a different type to the `deepCloneMap` function, for example in instances when you map the primitive values to a different type:
+
 ```js
   const obj = {
     a: 1,
