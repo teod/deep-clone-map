@@ -1,10 +1,14 @@
 {
   "name": "deep-clone-map",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Deep clone and map complex nested objects",
   "main": "dist/index.js",
   "scripts": {
-    "prepublish": "tsc --project ./tsconfig-es5.json",
+    "compile": "tsc",
+    "compile-es5": "tsc --project ./tsconfig-es5.json",
+    "compile-browser": "tsc --project ./tsconfig-browser.json && yarn rm-export",
+    "rm-export": "babel --plugins remove-import-export dist/browser/index.js --out-file dist/browser/index.js",
+    "prepublish": "yarn compile && yarn compile-es5 && yarn compile-browser",
     "test": "jest"
   },
   "repository": {
@@ -29,6 +33,7 @@
     "@babel/preset-env": "^7.9.6",
     "@babel/preset-typescript": "^7.9.0",
     "@types/jest": "24.0.15",
+    "babel-plugin-remove-import-export": "^1.1.1",
     "jest": "^25.3.0",
     "typescript": "^3.8.3"
   }
