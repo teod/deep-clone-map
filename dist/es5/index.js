@@ -32,7 +32,6 @@ var __spread = (this && this.__spread) || function () {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 function deepCloneMap(o, cb) {
-    if (cb === void 0) { cb = function (val) { return val; }; }
     if (!o || typeof o !== 'object') {
         return o;
     }
@@ -47,7 +46,7 @@ function deepCloneMap(o, cb) {
                 obj[key] = Array.isArray(obj[key]) ? __spread(obj[key]) : __assign({}, obj[key]);
                 t(obj[key], previousKey);
             }
-            else {
+            else if (typeof cb === 'function') {
                 obj[key] = cb(obj[key], previousKey);
             }
         }

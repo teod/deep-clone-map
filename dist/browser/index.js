@@ -14,11 +14,6 @@ var __spreadArrays = this && this.__spreadArrays || function () {
     return r;
 };
 function deepCloneMap(o, cb) {
-    if (cb === void 0) {
-        cb = function (val) {
-            return val;
-        };
-    }
     if (!o || typeof o !== 'object') {
         return o;
     }
@@ -34,7 +29,7 @@ function deepCloneMap(o, cb) {
             if (obj[key] && typeof obj[key] === 'object') {
                 obj[key] = Array.isArray(obj[key]) ? __spreadArrays(obj[key]) : __assign({}, obj[key]);
                 t(obj[key], previousKey);
-            } else {
+            } else if (typeof cb === 'function') {
                 obj[key] = cb(obj[key], previousKey);
             }
         }

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-function deepCloneMap(o, cb = val => val) {
+function deepCloneMap(o, cb) {
     if (!o || typeof o !== 'object') {
         return o;
     }
@@ -14,7 +14,7 @@ function deepCloneMap(o, cb = val => val) {
                 obj[key] = Array.isArray(obj[key]) ? [...obj[key]] : { ...obj[key] };
                 t(obj[key], previousKey);
             }
-            else {
+            else if (typeof cb === 'function') {
                 obj[key] = cb(obj[key], previousKey);
             }
         }

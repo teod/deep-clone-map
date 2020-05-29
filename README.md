@@ -18,7 +18,7 @@ A big advantage of <b>Deep Clone Map</b> is that it has zero dependencies.
 
 #### Performance
 
-<b>Deep Clone Map</b> has a performance on par with other popular alternatives, but it offers more without using any dependencies.
+<b>Deep Clone Map</b> has a performance on par with other popular alternatives, but it doesn't use any dependencies, and in some instances provides more functionality.
 
 Some <b>benchmarks</b> running on MacOS Catalina and Node v12.13.0 using benchmark library:
 
