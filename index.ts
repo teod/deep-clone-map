@@ -8,7 +8,7 @@ function deepCloneMap<T>(o: T, cb: Callback = val => val): T {
   }
 
   // @ts-ignore
-  const n = o.constructor === Array ? [...o] : { ...o }
+  const n = Array.isArray(o) ? [...o] : { ...o }
 
   ;(function t(obj, prevKey = '') {
     // @ts-ignore
@@ -16,8 +16,7 @@ function deepCloneMap<T>(o: T, cb: Callback = val => val): T {
       const previousKey = prevKey ? prevKey + '.' + key : key
 
       if (obj[key] && typeof obj[key] === 'object') {
-        obj[key] =
-          obj[key].constructor === Array ? [...obj[key]] : { ...obj[key] }
+        obj[key] = Array.isArray(obj[key]) ? [...obj[key]] : { ...obj[key] }
         t(obj[key], previousKey)
       } else {
         obj[key] = cb(obj[key], previousKey)

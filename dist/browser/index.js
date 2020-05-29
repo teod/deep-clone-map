@@ -23,7 +23,7 @@ function deepCloneMap(o, cb) {
         return o;
     }
     // @ts-ignore
-    var n = o.constructor === Array ? __spreadArrays(o) : __assign({}, o);
+    var n = Array.isArray(o) ? __spreadArrays(o) : __assign({}, o);
     (function t(obj, prevKey) {
         if (prevKey === void 0) {
             prevKey = '';
@@ -32,7 +32,7 @@ function deepCloneMap(o, cb) {
         for (var key in obj) {
             var previousKey = prevKey ? prevKey + '.' + key : key;
             if (obj[key] && typeof obj[key] === 'object') {
-                obj[key] = obj[key].constructor === Array ? __spreadArrays(obj[key]) : __assign({}, obj[key]);
+                obj[key] = Array.isArray(obj[key]) ? __spreadArrays(obj[key]) : __assign({}, obj[key]);
                 t(obj[key], previousKey);
             } else {
                 obj[key] = cb(obj[key], previousKey);
