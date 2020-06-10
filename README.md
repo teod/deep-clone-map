@@ -14,7 +14,7 @@ A big advantage of <b>Deep Clone Map</b> is that it has zero dependencies.
 
 #### Size
 
-<b>Deep Clone Map</b> size is really tiny only <b>242 bytes</b> minified and gzipped.
+<b>Deep Clone Map</b> size is really tiny somewhere between <b>242 bytes</b> up to <b>440 bytes</b> minified and gzipped, depending on the algorithm used.
 
 #### Performance
 
@@ -62,6 +62,8 @@ Some <b>benchmarks</b> running on MacOS Catalina and Node v12.13.0 using benchma
     </tr>
   </tbody>
 </table>
+
+The code for benchmarks is located under the <b>benchmark</b> folder in the github repository.
 
 ## Install
 

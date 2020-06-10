@@ -313,3 +313,33 @@ export const expectedArr2 = [
     },
   },
 ]
+
+export const testObjPrimitives = {
+  a: {
+    a: {
+      a: new Date('2099-01-01'),
+      b: new String('a'),
+    },
+    b: new Date('2099-01-01'),
+    c: new Number(100),
+    d: {
+      a: Symbol('a'),
+      b: new Map(),
+    },
+  },
+}
+
+export const expectedObjPrimitives = {
+  a: {
+    a: {
+      a: 1,
+      b: 1,
+    },
+    b: 1,
+    c: 1,
+    d: {
+      a: 1,
+      b: 1,
+    },
+  },
+}

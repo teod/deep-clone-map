@@ -10,8 +10,10 @@ function deepCloneMap(o, cb) {
         // @ts-ignore
         for (const key in obj) {
             const previousKey = prevKey ? prevKey + '.' + key : key;
-            if (obj[key] && typeof obj[key] === 'object') {
-                obj[key] = Array.isArray(obj[key]) ? [...obj[key]] : { ...obj[key] };
+            const isArr = Array.isArray(obj[key]);
+            const isObj = obj[key] && obj[key].constructor === Object;
+            if (isArr || isObj) {
+                obj[key] = isArr ? [...obj[key]] : { ...obj[key] };
                 t(obj[key], previousKey);
             }
             else if (typeof cb === 'function') {

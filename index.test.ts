@@ -12,6 +12,8 @@ import {
   testCustomArr1,
   testArr2,
   expectedArr2,
+  testObjPrimitives,
+  expectedObjPrimitives,
 } from './test-data'
 
 describe('objects', () => {
@@ -208,5 +210,13 @@ describe('primitives', () => {
     const res = deepCloneMap(undefined)
 
     expect(res).toEqual(undefined)
+  })
+})
+
+describe('object primitives', () => {
+  it('should map all objects besides Object and Array', () => {
+    const res = deepCloneMap(testObjPrimitives, () => 1)
+
+    expect(res).toEqual(expectedObjPrimitives)
   })
 })
