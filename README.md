@@ -132,16 +132,17 @@ Returns a new deeply cloned version of the input argument value, it will maintai
 ```js
 import deepCloneMap from 'deep-clone-map'
 ```
+<b><i>Note: the library code is ES6, if you don't have an environment that supports it, you will gonna have to transpile the module's code yourself using babel. If you are using webpack and babel you will gonna have to ignore the module specifically in your config. Otherwise you can use the already commonjs ready provided es5 module.</i></b>
 
 ##### For es5 support
 
 ```js
-import deepCloneMap from 'deep-clone-map/es5'
+import deepCloneMap from 'deep-clone-map/dist/es5'
 ```
 
 ##### Browser
 
-A browser ready bundle is provided in the node module at `dist/browser/index.js`
+A browser ready bundle is provided in the node module at `deep-clone-map/dist/browser/index.js`
 
 #### Deeply clone an object:
 

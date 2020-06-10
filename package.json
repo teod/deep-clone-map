@@ -1,6 +1,6 @@
 {
   "name": "deep-clone-map",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Deep clone and map complex nested objects",
   "main": "dist/index.js",
   "scripts": {

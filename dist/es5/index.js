@@ -42,8 +42,10 @@ function deepCloneMap(o, cb) {
         // @ts-ignore
         for (var key in obj) {
             var previousKey = prevKey ? prevKey + '.' + key : key;
-            if (obj[key] && typeof obj[key] === 'object') {
-                obj[key] = Array.isArray(obj[key]) ? __spread(obj[key]) : __assign({}, obj[key]);
+            var isArr = Array.isArray(obj[key]);
+            var isObj = obj[key] && obj[key].constructor === Object;
+            if (isArr || isObj) {
+                obj[key] = isArr ? __spread(obj[key]) : __assign({}, obj[key]);
                 t(obj[key], previousKey);
             }
             else if (typeof cb === 'function') {
